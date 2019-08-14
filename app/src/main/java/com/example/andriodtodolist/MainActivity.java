@@ -17,14 +17,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(savedInstanceState!=null)
+        {
+            currentIndex=savedInstanceState.getInt("tasks",0);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Resources res = getResources();
         tasks=res.getStringArray(R.array.todos);
         textView=findViewById(R.id.textView);
-                textView.setText(tasks[0]);
+                textView.setText(tasks[currentIndex]);
+        Log.d("MainActivity", "onCreate: ");
     }
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt("tasks", currentIndex);
 
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -54,15 +64,9 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         Log.d("MainActivity", "onDestroy: ");
     }
-    private static final String TODO_INDEX = "currentIndex"
 
-    @Override
-    protected void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putInt(TODO_INDEX, currentIndex);
 
-    }
-    super
+
 
     public void Previous(View view){
         currentIndex--;
@@ -73,5 +77,6 @@ public class MainActivity extends AppCompatActivity {
         //currentIndex++;
         Log.d("MainActivity", "value of current index:"+currentIndex);
         textView.setText(tasks[currentIndex]);
+
     }
 }
