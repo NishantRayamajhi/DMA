@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">todo-detail</string>
+    <string name="app_name">Andriod todo_detail</string>
+    <string name="next">NEXT</string>
+    <string name="textview">TextView</string>
+    <string name="previous">PREVIOUS</string>
+
+    <string-array name="todos">
+        <item>Wake up</item>
+        <item>Drink Coffee</item>
+        <item>Make at least one person laugh</item>
+        <item>Plant a tree</item>
+        <item>Ponder on duality of existance</item>
+        <item>Go to sleep</item>
+    </string-array>
 </resources>
