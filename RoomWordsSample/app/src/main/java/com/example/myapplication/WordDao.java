@@ -1,23 +1,22 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.PrimaryKey;
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
 
+import java.util.List;
+
+@Dao
 public interface WordDao {
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insert(Word word);
+
+    @Query("DELETE FROM word_table")
     void deleteAll();
 
-    void insert(com.example.myapplication.Word word);
-
-    public class Word {
-
-        @PrimaryKey
-        @NonNull
-        @ColumnInfo(name = "word")
-        private String mWord;
-
-        public Word(@NonNull String word) {this.mWord = word;}
-
-        public String getWord(){return this.mWord;}
-    }
+    @Query("SELECT * FROM word_table ORDER BY word ASC")
+    LiveData<List<Word>> getAllWords();
 }
